@@ -72,30 +72,30 @@ Sensitive data such as:
 
 are **NOT hardcoded**.
 
-### 🔹 Local Setup
+###  Local Setup
 Configuration is managed using a `.env` file (ignored by Git):
 
-```env
+env
 BASE_URL=https://api.example.com
 AUTH_ENDPOINT=/auth/login
 USERNAME=your_email
 PASSWORD=your_password
 
-## How to Run Tests
+### How to Run Tests
 mvn clean test
 
-## 📊 Allure Reports
+### 📊 Allure Reports
 🔹 Generate & View Report
 allure serve allure-results
 
 🔹 What You’ll See in Allure
-✔ Test execution status
-✔ Request payload
-✔ Request URL
-✔ Response body
-✔ HTTP status code
+- Test execution status
+- Request payload
+- Request URL
+- Response body
+- HTTP status code
 
-## 🧪 Sample API Test
+### 🧪 Sample API Test
 
 @Test
 public void testAccessToken() {
@@ -120,18 +120,27 @@ public void testAccessToken() {
     );
 }
 
-## 📸 Allure Report Preview
+### 📸 Allure Report Preview
 
-Allure reports include:
-Request Payload
-Response Body
-Status Code
-Execution history
+**Allure reports include:**
+- Request Payload
+- Response Body
+- Status Code
+- Execution history
 
-## 🧠 Design Principles Followed
+### 🧠 Design Principles Followed
 
-Separation of concerns
-No hardcoded configuration
-Reusable and extensible structure
-CI/CD friendly execution
-Interview-ready framework design
+- Separation of concerns
+- No hardcoded configuration
+- Reusable and extensible structure
+- CI/CD friendly execution
+- Interview-ready framework design
+
+### ⭐ Author
+
+Built with a focus on clean architecture, maintainability, and industry standards.
+
+If you clone this repository and run the tests, you’ll get:
+- Clean execution
+- Detailed Allure reports
+- A strong foundation for scalable API automation
