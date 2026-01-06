@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["results", "stats"],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "created_at",
+          "updated_at",
+          "created_by",
+          "template_id",
+          "version_id",
+          "is_active",
+          "grant_access_to_new_users",
+          "collaborators",
+          "stats"
+        ],
+        "properties": {
+          "cloned_from": {
+            "type": ["integer", "null"]
+          },
+          "collaborators": {
+            "type": "array"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "integer"
+          },
+          "grant_access_to_new_users": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "template_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "version_id": {
+            "type": "integer"
+          },
+          "stats": {
+            "type": "object",
+            "required": [
+              "audience",
+              "num_insights",
+              "num_of_content_pieces",
+              "num_of_milestones",
+              "num_selected_topics",
+              "num_uploads",
+              "objective",
+              "region",
+              "type_of_generated_document"
+            ],
+            "properties": {
+              "audience": { "type": "string" },
+              "num_insights": { "type": "integer" },
+              "num_of_content_pieces": { "type": "integer" },
+              "num_of_milestones": { "type": "integer" },
+              "num_selected_topics": { "type": "integer" },
+              "num_uploads": { "type": "integer" },
+              "objective": { "type": "string" },
+              "region": { "type": "string" },
+              "type_of_generated_document": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "required": ["total"],
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

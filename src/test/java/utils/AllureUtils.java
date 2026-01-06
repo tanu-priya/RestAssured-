@@ -23,7 +23,8 @@ public class AllureUtils {
             Allure.addAttachment(
                     "Response Body",
                     "application/json",
-                    response.toString());
+                    response.getBody().asString()
+);
 
             Allure.addAttachment(
                     "Status Code",

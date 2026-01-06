@@ -6,6 +6,7 @@ import io.restassured.RestAssured;
 import pojos.response.LoginResponse;
 import utils.AllureUtils;
 import utils.ConfigReader;
+import utils.Masking;
 
 public class GetAccessToken extends BaseTest {
 
@@ -13,8 +14,9 @@ public class GetAccessToken extends BaseTest {
 
     public void testAccessToken() {
         String payload = payloadManager.createUserPayload(ConfigReader.get("email"), ConfigReader.get("password"));
-        AllureUtils.attachRequest(payload);
-        AllureUtils.attachRequestApiEndpoint(ConfigReader.get("BASE_URL") + ConfigReader.get("AUTH_URL"));
+        AllureUtils.attachRequest(Masking.maskPassword(payload));
+        String endpoint = ConfigReader.get("BASE_URL") + ConfigReader.get("AUTH_URL");
+        AllureUtils.attachRequestApiEndpoint(Masking.maskEndpoint(endpoint));
         requestSpecification.basePath(ConfigReader.get("AUTH_URL"));
         response = RestAssured.given()
                 .spec(requestSpecification)
