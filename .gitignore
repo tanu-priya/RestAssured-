@@ -2,6 +2,7 @@
 /.settings
 /.classpath
 /.project
+/.allure-results
 *.log
 *.iml
 .idea
