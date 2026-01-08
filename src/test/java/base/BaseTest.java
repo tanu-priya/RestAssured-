@@ -8,35 +8,53 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import managers.AuthManagar;
+import managers.AuthManager;
 import modules.PayloadManager;
 import utils.AllureUtils;
 import utils.ConfigReader;
 
 public class BaseTest {
+    private static ThreadLocal<Response> response = new ThreadLocal<>();
     public RequestSpecification requestSpecification;
-    public Response response;
     public ValidatableResponse validatableResponse;
     public AssertActions assertActions = new AssertActions();
     public PayloadManager payloadManager = new PayloadManager();
 
-    @BeforeSuite(alwaysRun = true)
-    public void beforeSuite() {
-        AuthManagar.generateToken();
+    protected void setResponse(Response res) {
+        response.set(res);
     }
 
-    @BeforeClass
-    public void setUp() {
-    requestSpecification = RestAssured.given();
-        requestSpecification.baseUri(ConfigReader.get("BASE_URL"));
-        requestSpecification.contentType("application/json");
-        requestSpecification.header(
-                "Authorization",
-                "Bearer " + AuthManagar.getAccessToken()
-            );
-}
-    @AfterTest(alwaysRun = true)
-    public void attachAllureResponse() {
-        AllureUtils.attachResponse(response);
+    protected Response getResponse() {
+        return response.get();
     }
+
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite() {
+        AuthManager.generateToken();
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void setUp() {
+        RestAssured.baseURI = ConfigReader.get("BASE_URL");
+
+    }
+
+    protected RequestSpecification baseRequest() {
+        return RestAssured
+                .given()
+                .contentType("application/json")
+                .header(
+                        "Authorization",
+                        "Bearer " + AuthManager.getAccessToken());
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void attachAllureResponse() {
+        if (getResponse() != null) {
+            AllureUtils.attachResponse(getResponse());
+        }
+        response.remove();
+
+    }
+
 }

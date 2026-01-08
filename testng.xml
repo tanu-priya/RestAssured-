@@ -4,7 +4,9 @@
 
     <test name="IC CRUD Tests">
         <classes>
-            <class name="tests.ic.crud.CreateUserTest"/>
+            <class name="tests.ic.crud.GetIMNotebooks"/>
+            <class name="tests.ic.crud.Login"/>
+
         </classes>
     </test>
 
